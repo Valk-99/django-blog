@@ -1,5 +1,5 @@
-# django-blog
-In this project i used such technologies:<br><br>
+# django-blog<br>
+# In this project i used such technologies:<br><br>
   <b>django, css, html, <br>bootstrap v4.6x, <br>
   javascript<br>StartBootstrap</b>
 <h1>Start app</h1><br>
