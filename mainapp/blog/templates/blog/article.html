@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная страница {% endblock %}
+
+{% block content %}
+
+        <h1 class="my-4">
+          <small class="">Главная страница, Добро Пожаловать!</small>
+        </h1>
+{% for article in article %}
+        <!-- Blog Post -->
+        <div class="card mb-4">
+            <a href="{{ article.get_absolute_url }}"><img class="card-img-top" width="750" height="300" src="{% if article.image %}{{ article.image.url }}{% else %}http://placehold.it/750x300{% endif %}" alt="Card image cap"></a>
+          <div class="card-body">
+            <h2 class="card-title">{{ article.title }}</h2>
+            <p class="card-text">{{ article.intro }}</p>
+            <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Детальнее &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            {{ article.date }} by
+            <a href="#">{{ article.author }}</a>
+          </div>
+        </div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} {{  article.title  }} {% endblock %}
+
+{% block content %}
+
+        <!-- Title -->
+        <h1 class="mt-4">{{ article.title }}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a href="#">{{ article.author }}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{ article.date }}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" width="900" height="300" src="{% if article.image %}{{ article.image.url }}{% else %}http://placehold.it/900x300{% endif %}" alt="">
+
+        <hr>
+
+        <!-- Post Content -->
+
+          <p>{{ article.body|linebreaksbr }}</p>
+
+
+        <hr>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Оставьте комментарий:</h5>
+          <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+          </div>
+        </div>
+
+{% for comment in article.comments.all %}
+        <!-- Single Comment -->
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{ comment.author }} | {{ comment.date }}</h5>
+              <p style="background-color: #fff;">{{ comment }}</p>
+          </div>
+        </div>
+{% endfor %}
+
+{% endblock %}
